@@ -1,8 +1,13 @@
 class Clients {
+
     constructor() {
         this.clients = {};
-        this.clients_count = Object.keys(clients).length;
     }
+
+    clientsCount() {
+        return Object.keys(this.clients).length;
+    }
+
 }
 
-module.exports = Clients;
+module.exports = new Clients();

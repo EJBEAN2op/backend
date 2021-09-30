@@ -18,7 +18,7 @@ class WsManager {
                 const { callback, event } = routeMeta;
                 connection.on(event, (message) => {
                     Logger.log('WS server', `connection event => ${event}`, 'executing callback');
-                    callback(message);
+                    callback(connection, message);
                 });
             }
         });
