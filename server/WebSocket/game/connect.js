@@ -2,6 +2,7 @@ const clients = require('../../../components/Clients');
 const { Logger, guid } = require('../../../modules');
 // eslint-disable-next-line no-unused-vars
 const { encode } = require('msgpack-lite');
+require('colors');
 
 module.exports = {
     event: 'connect',
@@ -13,6 +14,6 @@ module.exports = {
             'clientId': clientId.toString()
         };
         connection.send(JSON.stringify(payLoad));
-        Logger.log('WS server', 'client connected', `sent payload ${payLoad}`, `clientId = ${clientId}`);
+        Logger.log('WS server', 'client connected', `clientId = ${clientId.cyan}`);
     }
 };

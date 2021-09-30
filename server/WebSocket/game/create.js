@@ -3,6 +3,8 @@ const clients = require('../../../components/Clients');
 const { Logger, guid } = require('../../../modules');
 // eslint-disable-next-line no-unused-vars
 const { encode } = require('msgpack-lite');
+require('colors');
+
 
 module.exports = {
     event: 'create',
@@ -18,6 +20,6 @@ module.exports = {
             'game': games[gameId]
         };
         clients[clientId].connection.send(JSON.stringify(payLoad));
-        Logger.log('WS server', 'new game created', `sent payload ${payLoad}`, `gameId = ${gameId}`);
+        Logger.log('WS server', 'new game created', `gameId = ${gameId.cyan}`);
     }
 };

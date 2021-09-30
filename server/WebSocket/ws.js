@@ -17,7 +17,7 @@ class WsManager {
                 const routeMeta = require(`./connection/${routes}`);
                 const { callback, event } = routeMeta;
                 connection.on(event, (message) => {
-                    Logger.log('WS server', `connection event => ${event}`, 'executing callback');
+                    Logger.log('WS Manager', `connection event => ${event}`, 'executing callback');
                     callback(connection, message);
                 });
             }

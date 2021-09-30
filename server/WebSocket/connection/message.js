@@ -1,6 +1,7 @@
 const fs = require('fs');
 // eslint-disable-next-line no-unused-vars
 const { decode, encode } = require('msgpack-lite');
+const { Logger } = require('../../../modules');
 const gameProtocols = fs.readdirSync('./server/WebSocket/game');
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
         const method = gameProtocols.find(x => x.toLowerCase() == `${result.method}.js`.toLowerCase());
         if (!method) throw new Error(`game protocol ${result.method} does not exist`);
         const protocol = require(`../game/${method}`);
+        Logger.log('WS Manager', `message event | Received payload | WebSockets/games/${protocol.event}`);
         protocol.callback(connection, result);
     }
 };
