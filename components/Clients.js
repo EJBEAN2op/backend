@@ -9,5 +9,5 @@ class Clients {
     }
 
 }
-
-module.exports = new Clients();
+const client = new Clients();
+module.exports = client;

@@ -1,8 +1,11 @@
 const games = require('../../../components/Games');
 const clients = require('../../../components/Clients');
-const { Logger, guid } = require('../../../modules');
+const guid = require('../../../modules/guid');
+const Logger = require('../../../modules/Logger');
+
 // eslint-disable-next-line no-unused-vars
 const { encode } = require('msgpack-lite');
+const Player = require('../../../components/Player');
 require('colors');
 
 
@@ -11,15 +14,17 @@ module.exports = {
     callback: (connection, message) => {
         const gameId = guid();
         const clientId = message.clientId;
-        games[gameId] = {
+
+        const player = new Player(300, 500, clientId);
+        games.games[gameId] = {
             id: gameId,
-            clients: []
+            clients: [player]
         };
         const payLoad = {
             'method': 'create',
-            'game': games[gameId]
+            'game': games.games[gameId]
         };
-        clients[clientId].connection.send(JSON.stringify(payLoad));
+        clients.clients[clientId].connection.send(JSON.stringify(payLoad));
         Logger.log('WS server', 'new game created', `gameId = ${gameId.cyan}`);
     }
 };

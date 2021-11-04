@@ -6,6 +6,6 @@ const { encode } = require('msgpack-lite');
 module.exports = {
     event: 'open',
     callback: (connection) => {
-        // wip
+
     }
 };

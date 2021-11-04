@@ -8,7 +8,7 @@ module.exports = {
     event: 'connect',
     callback: (connection) => {
         const clientId = guid();
-        clients[clientId] = { connection: connection };
+        clients.clients[clientId] = { connection: connection };
         const payLoad = {
             'method': 'connect',
             'clientId': clientId.toString()

@@ -7,7 +7,8 @@ const gameProtocols = fs.readdirSync('./server/WebSocket/game');
 module.exports = {
     event: 'message',
     callback: (connection, message) => {
-        const result = decode(message);
+        // const result = decode(message);
+        const result = JSON.parse(message);
         if (!result.method) throw new Error('WS message must have a result method');
         const method = gameProtocols.find(x => x.toLowerCase() == `${result.method}.js`.toLowerCase());
         if (!method) throw new Error(`game protocol ${result.method} does not exist`);
