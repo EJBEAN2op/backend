@@ -1,9 +1,10 @@
 class Player {
 
-    constructor(x = null, y = null, clientId = null) {
+    constructor(x = null, y = null, clientId = null, nickname = null) {
         this.id = clientId,
         this.x = x;
         this.y = y;
+        this.nickname = nickname,
         this.velocity = {
             x: 0,
             y: 0
