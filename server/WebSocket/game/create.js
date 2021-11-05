@@ -5,7 +5,6 @@ const Logger = require('../../../modules/Logger');
 
 // eslint-disable-next-line no-unused-vars
 const { encode } = require('msgpack-lite');
-const Player = require('../../../components/Player');
 require('colors');
 
 
@@ -15,10 +14,9 @@ module.exports = {
         const gameId = guid();
         const clientId = message.clientId;
 
-        const player = new Player(300, 500, clientId);
         games.games[gameId] = {
             id: gameId,
-            clients: [player]
+            clients: []
         };
         const payLoad = {
             'method': 'create',
