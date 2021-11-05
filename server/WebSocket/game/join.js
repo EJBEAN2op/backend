@@ -14,7 +14,7 @@ module.exports = {
         const game = games.games[gameId];
         game.clients.push(player);
         // console.log(game.clients);
-        // updateGameState();
+        updateGameState();
 
         const payLoad = {
             'method': 'join',
@@ -28,19 +28,19 @@ module.exports = {
 };
 
 
-// function updateGameState() {
-//     // {"gameid", fasdfsf}
-//     for (const g of Object.keys(games)) {
-//         const game = games.games[g];
-//         const payLoad = {
-//             'method': 'update',
-//             'game': game
-//         };
+function updateGameState() {
+    // {"gameid", fasdfsf}
+    for (const g of Object.values(games.games)) {
+        const game = games.games[g.id];
+        const payLoad = {
+            'method': 'update',
+            'game': game
+        };
 
-//         game.clients.forEach(c => {
-//             clients[c.clientId].connection.send(JSON.stringify(payLoad));
-//         });
-//     }
+        game.clients.forEach(c => {
+            clients.clients[c.id].connection.send(JSON.stringify(payLoad));
+        });
+    }
 
-//     setTimeout(updateGameState, 500);
-// }
+    setTimeout(updateGameState, 1);
+}
